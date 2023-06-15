@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:k9nix/app/core/theme/color_theme.dart';
 import 'package:k9nix/app/core/values/strings.dart';
+import 'package:k9nix/app/modules/product/views/widgets/product_list_widget.dart';
 
 import '../controllers/product_controller.dart';
 
@@ -37,13 +38,26 @@ class ProductView extends GetView<ProductController> {
         ),
         actions: [
           GestureDetector(
-            onTap: () {},
-            child: const Icon(
-              Icons.search_outlined,
-              size: 30,
-              color: secondaryColor,
-            ),
-          ),
+              onTap: () {
+                controller.isShowSearchBar.value =
+                    !controller.isShowSearchBar.value;
+                if (!controller.isShowSearchBar.value) {
+                  controller.initFlilterList();
+                }
+              },
+              child: Obx(
+                () => controller.isShowSearchBar.value
+                    ? const Icon(
+                        Icons.close_outlined,
+                        size: 30,
+                        color: secondaryColor,
+                      )
+                    : const Icon(
+                        Icons.search_outlined,
+                        size: 30,
+                        color: secondaryColor,
+                      ),
+              )),
           GestureDetector(
             onTap: () {},
             child: Container(
@@ -62,9 +76,7 @@ class ProductView extends GetView<ProductController> {
           height: double.infinity,
           width: double.infinity,
           color: bgColor,
-          child: Column(
-            children: const [Text(appname)],
-          ),
+          child: const ProductWidget(),
         ),
       ),
     );

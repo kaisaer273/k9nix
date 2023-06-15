@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../product_model.dart';
+import '../models/product.dart';
 
 class ProductProvider extends GetConnect {
   @override

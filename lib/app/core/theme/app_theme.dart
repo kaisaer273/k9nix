@@ -5,11 +5,11 @@ ColorScheme colorSchemeLight = const ColorScheme(
   // primary green
   primary: primaryGreen,
   // primary blue
-  primaryContainer: primaryBlue,
+  primaryContainer: bg2Color,
   // gradient 1
-  surface: gradient1,
+  surface: bg2Color,
   // gradient 2
-  background: gradient2,
+  background: bgColor,
   // secondary grey
   //secondary: Color(0xffF1F3F4),
   secondary: secondaryGrey,

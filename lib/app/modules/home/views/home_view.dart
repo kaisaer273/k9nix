@@ -21,6 +21,10 @@ class HomeView extends GetView<HomeController> {
               child: Column(
                 children: [
                   _appBar(),
+                  const Divider(
+                    thickness: 2,
+                    color: bg2Color,
+                  ),
                   _infoBar(),
                   _gridNavigationBar(),
                 ],
