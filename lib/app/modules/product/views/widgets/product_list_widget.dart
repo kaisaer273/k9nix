@@ -4,33 +4,14 @@ import 'package:k9nix/app/core/theme/color_theme.dart';
 import 'package:k9nix/app/data/models/product.dart';
 import 'package:k9nix/app/modules/product/controllers/product_controller.dart';
 
-class ProductWidget extends GetView<ProductController> {
-  const ProductWidget({super.key});
+class ProductListWidget extends GetView<ProductController> {
+  const ProductListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(children: [
-        Obx(
-          () => (controller.isShowSearchBar.value)
-              ? Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    autofocus: true,
-                    cursorColor: primaryColor,
-                    onChanged: (value) {
-                      controller.filterproduct(value);
-                    },
-                    style: const TextStyle(color: gradient1),
-                    decoration: const InputDecoration(
-                      hintText: 'Search',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(16))),
-                    ),
-                  ))
-              : Container(),
-        ),
         Expanded(
           child: Obx(() {
             final filteredProductList = controller.filteredProductList;
@@ -81,13 +62,21 @@ class ProductCard extends StatelessWidget {
             ),
             Row(
               children: [
-                Text("${filteredProductList[index].salePrice} VND"),
+                Text(
+                  "${filteredProductList[index].salePrice} VND",
+                  style: const TextStyle(
+                    color: secondaryColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
+                ),
                 const Text("/"),
                 Text(filteredProductList[index].unit.toString())
               ],
             ),
           ],
         ),
+        trailing: Text("Kho: ${filteredProductList[index].numInStorage ?? 0} "),
       ),
     );
   }

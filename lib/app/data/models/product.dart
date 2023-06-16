@@ -8,6 +8,8 @@ class Product {
   int? purchasePrice;
   int? salePrice;
   bool? isAvaiable;
+  int? numInStorage;
+  int? numSold;
 
   Product(
       {this.name,
@@ -18,7 +20,9 @@ class Product {
       this.barCode,
       this.purchasePrice,
       this.salePrice,
-      this.isAvaiable});
+      this.isAvaiable,
+      this.numInStorage,
+      this.numSold});
 
   Product.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -30,6 +34,8 @@ class Product {
     purchasePrice = json['purchasePrice'];
     salePrice = json['salePrice'];
     isAvaiable = json['isAvaiable'];
+    numInStorage = json['numInStorage'];
+    numSold = json['numSold'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +49,8 @@ class Product {
     data['purchasePrice'] = purchasePrice;
     data['salePrice'] = salePrice;
     data['isAvaiable'] = isAvaiable;
+    data['numInStorage'] = numInStorage;
+    data['numSold'] = numSold;
     return data;
   }
 }

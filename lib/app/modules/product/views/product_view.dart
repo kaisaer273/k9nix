@@ -30,34 +30,88 @@ class ProductView extends GetView<ProductController> {
               size: 30,
               color: primary2Color,
             )),
-        title: const Text(
-          product,
-          style: TextStyle(
-            color: primaryColor,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              product,
+              style: TextStyle(
+                color: primaryColor,
+              ),
+            ),
+            Container(
+                child: Obx(
+              () => AnimatedContainer(
+                duration: const Duration(milliseconds: 400),
+                width: controller.isShowSearchBar.value ? 250 : 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color:
+                      controller.isShowSearchBar.value ? secondaryGrey : null,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Container(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: controller.isShowSearchBar.value
+                          ? TextField(
+                              autofocus: true,
+                              onChanged: (value) =>
+                                  controller.filterproduct(value),
+                              decoration: const InputDecoration(
+                                hintText: "Search",
+                                hintStyle: TextStyle(color: primaryColor),
+                                border: InputBorder.none,
+                              ),
+                            )
+                          : null,
+                    )),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 400),
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          onTap: () {
+                            controller.isShowSearchBar.value =
+                                !controller.isShowSearchBar.value;
+                            if (!controller.isShowSearchBar.value) {
+                              controller.initFlilterList();
+                            }
+                          },
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(
+                                controller.isShowSearchBar.value ? 0 : 25),
+                            topRight: const Radius.circular(25),
+                            bottomLeft: Radius.circular(
+                                controller.isShowSearchBar.value ? 0 : 25),
+                            bottomRight: const Radius.circular(25),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: controller.isShowSearchBar.value
+                                ? const Icon(
+                                    Icons.close_outlined,
+                                    size: 30,
+                                    color: secondaryColor,
+                                  )
+                                : const Icon(
+                                    Icons.search_outlined,
+                                    size: 30,
+                                    color: secondaryColor,
+                                  ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ))
+          ],
         ),
         actions: [
-          GestureDetector(
-              onTap: () {
-                controller.isShowSearchBar.value =
-                    !controller.isShowSearchBar.value;
-                if (!controller.isShowSearchBar.value) {
-                  controller.initFlilterList();
-                }
-              },
-              child: Obx(
-                () => controller.isShowSearchBar.value
-                    ? const Icon(
-                        Icons.close_outlined,
-                        size: 30,
-                        color: secondaryColor,
-                      )
-                    : const Icon(
-                        Icons.search_outlined,
-                        size: 30,
-                        color: secondaryColor,
-                      ),
-              )),
           GestureDetector(
             onTap: () {},
             child: Container(
@@ -76,7 +130,7 @@ class ProductView extends GetView<ProductController> {
           height: double.infinity,
           width: double.infinity,
           color: bgColor,
-          child: const ProductWidget(),
+          child: const ProductListWidget(),
         ),
       ),
     );
