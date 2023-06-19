@@ -3,7 +3,7 @@ import 'package:k9nix/app/core/theme/color_theme.dart';
 
 ColorScheme colorSchemeLight = const ColorScheme(
   // primary green
-  primary: primaryGreen,
+  primary: primaryColor,
   // primary blue
   primaryContainer: bg2Color,
   // gradient 1
@@ -18,7 +18,7 @@ ColorScheme colorSchemeLight = const ColorScheme(
   // secondary red
   error: secondaryRed,
   // primary green
-  onPrimary: primaryGreen,
+  onPrimary: primaryColor,
   // primary blue
   onSecondary: primaryBlue,
   // secondary grey

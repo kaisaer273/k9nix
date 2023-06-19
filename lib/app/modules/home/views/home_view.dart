@@ -14,21 +14,60 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 70,
+        leading: Container(
+          padding: const EdgeInsets.only(
+            left: 16,
+          ),
+          child: const CircleAvatar(
+              radius: 100,
+              backgroundColor: bgColor,
+              child: Icon(
+                Icons.person_outline,
+                size: 30,
+                color: secondaryColor,
+              )),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              appname,
+              style: TextStyle(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "Thông tin >",
+              style: TextStyle(
+                color: primaryGrey,
+                fontSize: 16,
+              ),
+            )
+          ],
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 16),
+            child: Icon(
+              Icons.qr_code_scanner_outlined,
+              color: secondaryColor,
+              size: 30,
+            ),
+          )
+        ],
+        elevation: 0,
+      ),
       body: SafeArea(
-          child: Container(
-              decoration: const BoxDecoration(color: bgColor),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  _appBar(),
-                  const Divider(
-                    thickness: 2,
-                    color: bg2Color,
-                  ),
-                  _infoBar(),
-                  _gridNavigationBar(),
-                ],
-              ))),
+          child: Column(
+        children: [
+          //_appBar(),
+          _infoBar(),
+          _gridNavigationBar(),
+        ],
+      )),
     );
   }
 
@@ -37,6 +76,8 @@ class HomeView extends GetView<HomeController> {
       child: Container(
         margin: const EdgeInsets.only(
           top: 20,
+          left: 16,
+          right: 16,
         ),
         child: Column(
           children: [
@@ -52,7 +93,9 @@ class HomeView extends GetView<HomeController> {
                   GridNavItem(
                       icon: Icons.warehouse_outlined,
                       text: storage,
-                      onTap: () {}),
+                      onTap: () {
+                        Get.toNamed('/storage');
+                      }),
                   GridNavItem(
                       icon: Icons.list_alt_outlined,
                       text: product,
@@ -95,7 +138,11 @@ class HomeView extends GetView<HomeController> {
 
   Container _infoBar() {
     return Container(
-      margin: const EdgeInsets.only(top: 80),
+      margin: const EdgeInsets.only(
+        top: 80,
+        left: 16,
+        right: 16,
+      ),
       height: 220,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -179,8 +226,9 @@ class HomeView extends GetView<HomeController> {
 
   Container _appBar() {
     return Container(
-      margin: const EdgeInsets.only(
-        top: 20,
+      color: primaryColor,
+      padding: const EdgeInsets.all(
+        16,
       ),
       child: Row(
         children: [

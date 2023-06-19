@@ -9,12 +9,14 @@ const TextStyle cardTextStyle = TextStyle(
   fontFamily: 'sans_bold',
 );
 const title = TextStyle(
-  fontSize: 24,
-  fontWeight: FontWeight.bold,
+  fontSize: 20,
+  fontWeight: FontWeight.w600,
+  color: bgColor,
 );
 const subTitle = TextStyle(
-  fontSize: 16,
-  fontWeight: FontWeight.bold,
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+  color: secondaryBlack,
 );
 const textInfo = TextStyle(
   color: Colors.grey,

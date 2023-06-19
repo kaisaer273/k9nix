@@ -12,6 +12,27 @@ class ProductListWidget extends GetView<ProductController> {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(children: [
+        Obx(() => AnimatedContainer(
+              margin: const EdgeInsets.only(bottom: 10),
+              duration: const Duration(milliseconds: 300),
+              height: controller.isShowSearchBar.value ? 50 : 0,
+              child: Container(
+                child: controller.isShowSearchBar.value
+                    ? TextField(
+                        autofocus: true,
+                        onChanged: (value) => controller.filterproduct(value),
+                        decoration: const InputDecoration(
+                          hintText: "Search",
+                          hintStyle: TextStyle(color: primaryColor),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          )),
+                        ),
+                      )
+                    : null,
+              ),
+            )),
         Expanded(
           child: Obx(() {
             final filteredProductList = controller.filteredProductList;
