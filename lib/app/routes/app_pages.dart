@@ -31,7 +31,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.STORAGE,
-      page: () => const StorageView(),
+      page: () => StorageView(),
       binding: StorageBinding(),
     ),
     GetPage(

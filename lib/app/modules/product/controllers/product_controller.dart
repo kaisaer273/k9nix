@@ -224,4 +224,6 @@ class ProductController extends GetxController {
           item.ingredient!.toLowerCase().contains(query.toLowerCase());
     }).toList();
   }
+
+  List<Product> get productList => _data;
 }

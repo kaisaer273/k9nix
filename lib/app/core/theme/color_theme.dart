@@ -5,6 +5,7 @@ const Color bg2Color = Color.fromRGBO(185, 228, 201, 1);
 const Color primaryColor = Color.fromRGBO(53, 104, 89, 1);
 const Color primary2Color = Color.fromRGBO(55, 150, 111, 1);
 const Color secondaryColor = Color.fromRGBO(253, 85, 35, 1);
+const Color secondary2Color = Color.fromRGBO(253, 86, 35, 0.185);
 
 const Color white = Color(0xffffffff);
 const Color secondaryGrey = Color(0xffF1F3F4);

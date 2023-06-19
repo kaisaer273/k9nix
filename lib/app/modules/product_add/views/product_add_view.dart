@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:k9nix/app/core/theme/color_theme.dart';
 import 'package:k9nix/app/core/theme/text_theme.dart';
+import 'package:k9nix/app/global_widgets/custom_outline_button.dart';
 import 'package:k9nix/app/modules/product_add/views/widgets/custom_textfield.dart';
 import 'package:k9nix/app/modules/product_add/views/widgets/custom_toggle_button.dart';
 
@@ -64,22 +65,20 @@ class ProductAddView extends GetView<ProductAddController> {
       child: Row(
         children: [
           Expanded(
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Tạo thêm',
-                    style: title,
-                  ))),
+              child: CustomOutlineButton(
+            onPressed: () {},
+            text: 'Tạo thêm',
+          )),
           const SizedBox(
             width: 10,
           ),
           Expanded(
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Hoàn tất',
-                    style: title,
-                  ))),
+              child: CustomOutlineButton(
+            onPressed: () {},
+            text: 'Hoàn tất',
+            textColor: bgColor,
+            backgroundColor: primaryColor,
+          )),
         ],
       ),
     );

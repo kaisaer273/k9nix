@@ -4,6 +4,8 @@ import 'package:k9nix/app/core/theme/color_theme.dart';
 import 'package:k9nix/app/data/models/product.dart';
 import 'package:k9nix/app/modules/product/controllers/product_controller.dart';
 
+import 'empty_product_widget.dart';
+
 class ProductListWidget extends GetView<ProductController> {
   const ProductListWidget({super.key});
 
@@ -36,15 +38,17 @@ class ProductListWidget extends GetView<ProductController> {
         Expanded(
           child: Obx(() {
             final filteredProductList = controller.filteredProductList;
-            return ListView.builder(
-                itemCount: filteredProductList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ProductCard(
-                    index: index,
-                    productController: controller,
-                    filteredProductList: filteredProductList,
-                  );
-                });
+            return (filteredProductList.isEmpty)
+                ? const EmptyProductWidget()
+                : ListView.builder(
+                    itemCount: filteredProductList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ProductCard(
+                        index: index,
+                        productController: controller,
+                        filteredProductList: filteredProductList,
+                      );
+                    });
           }),
         ),
       ]),
