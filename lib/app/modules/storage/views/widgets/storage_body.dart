@@ -25,6 +25,11 @@ class StorageBody extends GetView<ProductController> {
                           autofocus: true,
                           onChanged: (value) => controller.filterproduct(value),
                           decoration: const InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
                             hintText: "Search",
                             hintStyle: TextStyle(color: primaryColor),
                             border: OutlineInputBorder(
@@ -41,7 +46,7 @@ class StorageBody extends GetView<ProductController> {
           children: [
             Container(
               padding: const EdgeInsets.only(top: 20),
-              height: 220,
+              height: 250,
               color: primaryColor,
               child: Column(
                 children: [
@@ -179,6 +184,8 @@ class ProductCard extends StatelessWidget {
     return Card(
       //color: bg2Color,
       child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         leading: const Icon(Icons.medication),
         title: Text(
           filteredProductList[index].name ?? "",
@@ -196,7 +203,7 @@ class ProductCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "${filteredProductList[index].salePrice} VND",
+                  "${filteredProductList[index].salePrice} đ",
                   style: const TextStyle(
                     color: secondaryColor,
                     fontWeight: FontWeight.w600,
@@ -209,7 +216,22 @@ class ProductCard extends StatelessWidget {
             ),
           ],
         ),
-        trailing: Text("Kho: ${filteredProductList[index].numInStorage ?? 0} "),
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text("Kho: ${filteredProductList[index].numInStorage ?? 0} "),
+            (filteredProductList[index].numInStorage == null ||
+                    filteredProductList[index].salePrice == null)
+                ? const Text(
+                    "0 đ",
+                    style: TextStyle(color: secondaryColor),
+                  )
+                : Text(
+                    "${filteredProductList[index].numInStorage! * filteredProductList[index].salePrice!} đ",
+                    style: const TextStyle(color: secondaryColor),
+                  ),
+          ],
+        ),
       ),
     );
   }
