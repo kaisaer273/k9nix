@@ -129,7 +129,10 @@ class ProductAddView extends GetView<ProductAddController> {
                 'Tình trạng sản phẩm',
                 style: subTitle,
               ),
-              CustomToggleButton()
+              SizedBox(
+                width: 8,
+              ),
+              Expanded(child: CustomToggleButton())
             ],
           ),
           const SizedBox(

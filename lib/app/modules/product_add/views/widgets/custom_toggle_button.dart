@@ -11,25 +11,29 @@ class CustomToggleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: bgColor, borderRadius: BorderRadius.circular(16)),
+          color: bgColor, borderRadius: BorderRadius.circular(10)),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomOutlineButton(
-              onPressed: () {},
-              text: 'Còn hàng',
-              textColor: false ? primaryColor : Colors.grey,
-              backgroundColor: false ? bg2Color : Colors.transparent,
-              borderColor: false ? primaryColor : Colors.transparent,
+            Expanded(
+              child: CustomOutlineButton(
+                onPressed: () {},
+                text: 'Còn hàng',
+                textColor: false ? primaryColor : Colors.grey,
+                backgroundColor: false ? bg2Color : Colors.transparent,
+                borderColor: false ? primaryColor : Colors.transparent,
+              ),
             ),
-            const SizedBox(width: 10.0),
-            CustomOutlineButton(
-              onPressed: () {},
-              text: 'Hết hàng',
-              textColor: true ? secondaryColor : Colors.grey,
-              backgroundColor: true ? secondary2Color : Colors.transparent,
-              borderColor: true ? secondaryColor : Colors.transparent,
+            Expanded(
+              child: CustomOutlineButton(
+                onPressed: () {},
+                text: 'Hết hàng',
+                textColor: true ? secondaryColor : Colors.grey,
+                backgroundColor: true ? secondary2Color : Colors.transparent,
+                borderColor: true ? secondaryColor : Colors.transparent,
+              ),
             ),
           ],
         ),

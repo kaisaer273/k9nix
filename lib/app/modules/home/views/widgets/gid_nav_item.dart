@@ -29,13 +29,16 @@ class GridNavItem extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Text(
-              text,
-              style: const TextStyle(
-                fontFamily: 'sans_semibold',
-                fontWeight: FontWeight.normal,
-                fontSize: 15,
-                color: primaryColor,
+            Center(
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontFamily: 'sans_semibold',
+                  fontWeight: FontWeight.normal,
+                  fontSize: 15,
+                  color: primaryColor,
+                ),
               ),
             ),
           ],

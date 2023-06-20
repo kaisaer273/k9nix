@@ -15,9 +15,8 @@ class ProductListWidget extends GetView<ProductController> {
       padding: const EdgeInsets.all(8),
       child: Column(children: [
         Obx(() => AnimatedContainer(
-              margin: const EdgeInsets.only(bottom: 10),
               duration: const Duration(milliseconds: 300),
-              height: controller.isShowSearchBar.value ? 50 : 0,
+              height: controller.isShowSearchBar.value ? 70 : 0,
               child: Container(
                 child: controller.isShowSearchBar.value
                     ? TextField(

@@ -207,6 +207,8 @@ class ProductController extends GetxController {
   RxList<Product> filteredProductList = RxList([]); // Danh sách đã lọc
   var isShowSearchBar = false.obs;
 
+  get productList => _data;
+
   @override
   void onInit() {
     super.onInit();
@@ -224,6 +226,4 @@ class ProductController extends GetxController {
           item.ingredient!.toLowerCase().contains(query.toLowerCase());
     }).toList();
   }
-
-  List<Product> get productList => _data;
 }

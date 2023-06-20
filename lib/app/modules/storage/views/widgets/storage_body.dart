@@ -14,114 +14,118 @@ class StorageBody extends GetView<ProductController> {
   Widget build(BuildContext context) {
     return Column(children: [
       Obx(() => AnimatedContainer(
-            margin: const EdgeInsets.only(bottom: 10),
+            curve: Curves.ease,
             duration: const Duration(milliseconds: 300),
-            height: controller.isShowSearchBar.value ? 80 : 250,
+            height: controller.isShowSearchBar.value ? 70 : 0,
             child: Container(
-              child: controller.isShowSearchBar.value
-                  ? Container(
-                      padding: const EdgeInsets.all(8),
-                      child: TextField(
-                        autofocus: true,
-                        onChanged: (value) => controller.filterproduct(value),
-                        decoration: const InputDecoration(
-                          hintText: "Search",
-                          hintStyle: TextStyle(color: primaryColor),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          )),
+                child: controller.isShowSearchBar.value
+                    ? Container(
+                        padding: const EdgeInsets.all(8),
+                        child: TextField(
+                          autofocus: true,
+                          onChanged: (value) => controller.filterproduct(value),
+                          decoration: const InputDecoration(
+                            hintText: "Search",
+                            hintStyle: TextStyle(color: primaryColor),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            )),
+                          ),
                         ),
-                      ),
-                    )
-                  : Container(
-                      color: primaryColor,
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 50,
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '${controller.productList.length} mã sản phẩm',
-                                  style: const TextStyle(
-                                    color: bgColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                                const Text(
-                                  'Báo cáo',
-                                  style: TextStyle(
-                                    color: secondaryColor,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            color: white,
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        child: const StorageInfoWidget(
-                                            title: 'Giá trị tồn',
-                                            icon: Icons
-                                                .monetization_on_outlined))),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Expanded(
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            color: white,
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        child: const StorageInfoWidget(
-                                            title: 'Số lượng',
-                                            icon: Icons
-                                                .format_list_numbered_outlined))),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          _gridNavigationBar(),
-                        ],
-                      ),
-                    ),
-            ),
+                      )
+                    : null),
           )),
       Expanded(
-        child: Obx(() {
-          final filteredProductList = controller.filteredProductList;
-          return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: (filteredProductList.isEmpty)
-                  ? const EmptyProductWidget()
-                  : ListView.builder(
-                      itemCount: filteredProductList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ProductCard(
-                          index: index,
-                          productController: controller,
-                          filteredProductList: filteredProductList,
-                        );
-                      }));
-        }),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 20),
+              height: 220,
+              color: primaryColor,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Obx(() => Text(
+                              '${controller.filteredProductList.length} mã sản phẩm',
+                              style: const TextStyle(
+                                color: bgColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            )),
+                        const Text(
+                          'Báo cáo',
+                          style: TextStyle(
+                            color: secondaryColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: const StorageInfoWidget(
+                                    title: 'Giá trị tồn',
+                                    icon: Icons.monetization_on_outlined))),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: const StorageInfoWidget(
+                                    title: 'Số lượng',
+                                    icon:
+                                        Icons.format_list_numbered_outlined))),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  _gridNavigationBar(),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Obx(() {
+                final filteredProductList = controller.filteredProductList;
+                return Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: (filteredProductList.isEmpty)
+                        ? const EmptyProductWidget()
+                        : ListView.builder(
+                            itemCount: filteredProductList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ProductCard(
+                                index: index,
+                                productController: controller,
+                                filteredProductList: filteredProductList,
+                              );
+                            }));
+              }),
+            ),
+          ],
+        ),
       ),
     ]);
   }
