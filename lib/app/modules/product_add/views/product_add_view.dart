@@ -88,9 +88,9 @@ class ProductAddView extends GetView<ProductAddController> {
     return Container(
       padding: const EdgeInsets.all(16),
       color: bg2Color,
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
             'Thông tin khác',
             style: title,
@@ -112,19 +112,19 @@ class ProductAddView extends GetView<ProductAddController> {
     return Container(
       padding: const EdgeInsets.all(16),
       color: bg2Color,
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Quản lý tồn kho',
             style: title,
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
                 'Tình trạng sản phẩm',
                 style: subTitle,
@@ -135,11 +135,11 @@ class ProductAddView extends GetView<ProductAddController> {
               Expanded(child: CustomToggleButton())
             ],
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Row(
-            children: const [
+            children: [
               Expanded(
                   child:
                       CustomTextField(label: 'Mã SKU', hintText: 'SKU code')),
@@ -159,24 +159,24 @@ class ProductAddView extends GetView<ProductAddController> {
     return Container(
       padding: const EdgeInsets.all(16),
       color: bg2Color,
-      child: Column(
+      child: const Column(
         children: [
-          const CustomTextField(
+          CustomTextField(
             label: 'Tên sản phẩm *',
             hintText: 'Nhập tên sản phẩm',
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
-          const CustomTextField(
+          CustomTextField(
             label: 'Thành phần',
             hintText: 'Nhập tên thành phần',
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Row(
-            children: const [
+            children: [
               Expanded(
                 child: CustomTextField(
                   label: 'Giá nhập',

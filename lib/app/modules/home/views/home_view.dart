@@ -29,9 +29,9 @@ class HomeView extends GetView<HomeController> {
                 color: secondaryColor,
               )),
         ),
-        title: Column(
+        title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
               appname,
               style: TextStyle(
@@ -63,7 +63,6 @@ class HomeView extends GetView<HomeController> {
       body: SafeArea(
           child: Column(
         children: [
-          //_appBar(),
           _infoBar(),
           _gridNavigationBar(),
         ],
@@ -71,7 +70,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  _gridNavigationBar() {
+  Expanded _gridNavigationBar() {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.only(
@@ -153,9 +152,9 @@ class HomeView extends GetView<HomeController> {
         children: [
           Container(
             padding: const EdgeInsets.all(20),
-            child: Row(
+            child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     today,
                     style: TextStyle(
@@ -219,64 +218,6 @@ class HomeView extends GetView<HomeController> {
               ]),
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Container _appBar() {
-    return Container(
-      color: primaryColor,
-      padding: const EdgeInsets.all(
-        16,
-      ),
-      child: Row(
-        children: [
-          Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                  color: bg2Color, borderRadius: BorderRadius.circular(50)),
-              child: const Icon(
-                Icons.person,
-                size: 30,
-              )),
-          Container(
-            padding: const EdgeInsets.only(
-              left: 10,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  storename,
-                  style: TextStyle(
-                      fontFamily: 'sans_regular',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: secondaryColor),
-                ),
-                Text(
-                  infomation,
-                  style: TextStyle(
-                      fontFamily: 'sans_regular',
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                      color: primaryGrey),
-                ),
-              ],
-            ),
-          ),
-          Expanded(child: Container()),
-          GestureDetector(
-            onTap: () => {},
-            child: const Icon(
-              Icons.qr_code_scanner_outlined,
-              color: secondaryColor,
-              size: 35,
-            ),
-          )
         ],
       ),
     );

@@ -70,7 +70,9 @@ class ProductCard extends StatelessWidget {
     return Card(
       //color: bg2Color,
       child: ListTile(
-        leading: const Icon(Icons.medication),
+        leading: Image.network(
+            'https://png.pngtree.com/png-clipart/20230504/original/pngtree-medicine-flat-icon-png-image_9138002.png',
+            scale: 6),
         title: Text(
           filteredProductList[index].name ?? "",
           overflow: TextOverflow.ellipsis,
