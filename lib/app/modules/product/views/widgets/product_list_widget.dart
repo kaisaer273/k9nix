@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:k9nix/app/core/theme/color_theme.dart';
-import 'package:k9nix/app/data/models/product.dart';
-import 'package:k9nix/app/modules/product/controllers/product_controller.dart';
 
-import 'empty_product_widget.dart';
+import 'package:k9nix/app/data/models/product.dart';
+import 'package:k9nix/app/global_widgets/empty_widget.dart';
+import 'package:k9nix/app/modules/product/controllers/product_controller.dart';
 
 class ProductListWidget extends GetView<ProductController> {
   const ProductListWidget({super.key});
@@ -22,10 +21,11 @@ class ProductListWidget extends GetView<ProductController> {
                     ? TextField(
                         autofocus: true,
                         onChanged: (value) => controller.filterproduct(value),
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: "Search",
-                          hintStyle: TextStyle(color: primaryColor),
-                          border: OutlineInputBorder(
+                          hintStyle:
+                              TextStyle(color: Get.theme.colorScheme.onPrimary),
+                          border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                             Radius.circular(8),
                           )),
@@ -37,17 +37,24 @@ class ProductListWidget extends GetView<ProductController> {
         Expanded(
           child: Obx(() {
             final filteredProductList = controller.filteredProductList;
-            return (filteredProductList.isEmpty)
-                ? const EmptyProductWidget()
-                : ListView.builder(
-                    itemCount: filteredProductList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ProductCard(
-                        index: index,
-                        productController: controller,
-                        filteredProductList: filteredProductList,
-                      );
-                    });
+            return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: EmptyWidget(
+                    condition: filteredProductList.isNotEmpty,
+                    title: "Không tìm được sản phẩm",
+                    logo: const Icon(
+                      Icons.add_box_outlined,
+                      size: 100,
+                    ),
+                    child: ListView.builder(
+                        itemCount: filteredProductList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return _ProductCard(
+                            index: index,
+                            productController: controller,
+                            filteredProductList: filteredProductList,
+                          );
+                        })));
           }),
         ),
       ]),
@@ -55,11 +62,11 @@ class ProductListWidget extends GetView<ProductController> {
   }
 }
 
-class ProductCard extends StatelessWidget {
+class _ProductCard extends StatelessWidget {
   final int index;
   final ProductController productController;
   final RxList<Product> filteredProductList;
-  const ProductCard(
+  const _ProductCard(
       {super.key,
       required this.index,
       required this.productController,
@@ -90,8 +97,8 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   "${filteredProductList[index].salePrice} VND",
-                  style: const TextStyle(
-                    color: secondaryColor,
+                  style: TextStyle(
+                    color: Get.theme.colorScheme.onPrimary,
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
                   ),
@@ -102,7 +109,10 @@ class ProductCard extends StatelessWidget {
             ),
           ],
         ),
-        trailing: Text("Kho: ${filteredProductList[index].numInStorage ?? 0} "),
+        trailing: IconButton(
+          icon: const Icon(Icons.article_outlined),
+          onPressed: () {},
+        ),
       ),
     );
   }

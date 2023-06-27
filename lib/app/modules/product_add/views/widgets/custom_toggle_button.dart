@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:k9nix/app/core/theme/color_theme.dart';
+import 'package:get/get.dart';
+
 import 'package:k9nix/app/global_widgets/custom_outline_button.dart';
 
 class CustomToggleButton extends StatelessWidget {
@@ -11,7 +12,8 @@ class CustomToggleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: bgColor, borderRadius: BorderRadius.circular(10)),
+          color: Get.theme.colorScheme.onPrimary,
+          borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5.0),
         child: Row(
@@ -21,18 +23,24 @@ class CustomToggleButton extends StatelessWidget {
               child: CustomOutlineButton(
                 onPressed: () {},
                 text: 'Còn hàng',
-                textColor: false ? primaryColor : Colors.grey,
-                backgroundColor: false ? bg2Color : Colors.transparent,
-                borderColor: false ? primaryColor : Colors.transparent,
+                textColor: false ? Get.theme.colorScheme.primary : Colors.grey,
+                backgroundColor: false
+                    ? Get.theme.colorScheme.surfaceVariant
+                    : Colors.transparent,
+                borderColor:
+                    false ? Get.theme.colorScheme.primary : Colors.transparent,
               ),
             ),
             Expanded(
               child: CustomOutlineButton(
                 onPressed: () {},
                 text: 'Hết hàng',
-                textColor: true ? secondaryColor : Colors.grey,
-                backgroundColor: true ? secondary2Color : Colors.transparent,
-                borderColor: true ? secondaryColor : Colors.transparent,
+                textColor: true ? Get.theme.colorScheme.secondary : Colors.grey,
+                backgroundColor: true
+                    ? Get.theme.colorScheme.onSurfaceVariant
+                    : Colors.transparent,
+                borderColor:
+                    true ? Get.theme.colorScheme.secondary : Colors.transparent,
               ),
             ),
           ],

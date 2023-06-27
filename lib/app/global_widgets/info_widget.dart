@@ -1,5 +1,4 @@
-import 'package:flutter/widgets.dart';
-import 'package:k9nix/app/core/theme/color_theme.dart';
+import 'package:flutter/material.dart';
 
 class InfoWidget extends StatelessWidget {
   final IconData icon;
@@ -9,6 +8,9 @@ class InfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
+      ),
       padding: const EdgeInsets.all(5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -20,28 +22,18 @@ class InfoWidget extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: bg2Color,
+                color: Theme.of(context).colorScheme.onPrimary,
                 size: 20,
               ),
               Text(
                 title,
-                style: const TextStyle(
-                  fontFamily: 'sans_semibold',
-                  fontWeight: FontWeight.w300,
-                  fontSize: 16,
-                  color: bg2Color,
-                ),
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),
-          const Text(
+          Text(
             "0",
-            style: TextStyle(
-              fontFamily: 'sans_bold',
-              fontWeight: FontWeight.w600,
-              fontSize: 20,
-              color: bgColor,
-            ),
+            style: Theme.of(context).textTheme.displaySmall,
           ),
         ],
       ),

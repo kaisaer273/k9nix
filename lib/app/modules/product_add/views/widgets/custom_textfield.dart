@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k9nix/app/core/theme/color_theme.dart';
-import 'package:k9nix/app/core/theme/text_theme.dart';
+import 'package:get/get.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -18,16 +17,16 @@ class CustomTextField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: subTitle,
+          style: Get.textTheme.bodyMedium,
         ),
         const SizedBox(height: 2),
         TextField(
           decoration: InputDecoration(
             hintText: hintText,
             // errorText: _validate ? 'Vui lòng nhập tên sản phẩm' : null,
-            enabledBorder: const UnderlineInputBorder(
+            enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                color: primaryColor,
+                color: Get.theme.colorScheme.primary,
                 width: 2,
               ),
             ),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:k9nix/app/core/theme/color_theme.dart';
-import 'package:k9nix/app/data/models/product.dart';
-import 'package:k9nix/app/modules/home/views/widgets/gid_nav_item.dart';
-import 'package:k9nix/app/modules/product/controllers/product_controller.dart';
-import 'package:k9nix/app/modules/product/views/widgets/empty_product_widget.dart';
-import 'package:k9nix/app/modules/storage/views/widgets/storage_info_widget.dart';
 
-class StorageBody extends GetView<ProductController> {
+import 'package:k9nix/app/data/models/product.dart';
+import 'package:k9nix/app/global_widgets/empty_widget.dart';
+import 'package:k9nix/app/global_widgets/gid_nav_item.dart';
+import 'package:k9nix/app/global_widgets/info_widget.dart';
+
+import 'package:k9nix/app/modules/storage/controllers/storage_controller.dart';
+
+class StorageBody extends GetView<StorageController> {
   const StorageBody({super.key});
 
   @override
@@ -25,17 +26,7 @@ class StorageBody extends GetView<ProductController> {
                           autofocus: true,
                           onChanged: (value) => controller.filterproduct(value),
                           decoration: const InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
                             hintText: "Search",
-                            hintStyle: TextStyle(color: primaryColor),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                              Radius.circular(8),
-                            )),
                           ),
                         ),
                       )
@@ -46,8 +37,8 @@ class StorageBody extends GetView<ProductController> {
           children: [
             Container(
               padding: const EdgeInsets.only(top: 20),
-              height: 250,
-              color: primaryColor,
+              height: 260,
+              color: Theme.of(context).colorScheme.primary,
               child: Column(
                 children: [
                   Padding(
@@ -57,19 +48,11 @@ class StorageBody extends GetView<ProductController> {
                       children: [
                         Obx(() => Text(
                               '${controller.filteredProductList.length} mã sản phẩm',
-                              style: const TextStyle(
-                                color: bgColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w800,
-                              ),
+                              style: Theme.of(context).textTheme.displayMedium,
                             )),
-                        const Text(
+                        Text(
                           'Báo cáo',
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: Theme.of(context).textTheme.headlineMedium,
                         )
                       ],
                     ),
@@ -77,30 +60,25 @@ class StorageBody extends GetView<ProductController> {
                   const SizedBox(
                     height: 16,
                   ),
-                  Padding(
+                  Container(
+                    height: 70,
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Row(
-                      children: [
+                      children: const [
                         Expanded(
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: const StorageInfoWidget(
-                                    title: 'Giá trị tồn',
-                                    icon: Icons.monetization_on_outlined))),
-                        const SizedBox(
+                          child: InfoWidget(
+                            title: "Giá trị tồn",
+                            icon: Icons.monetization_on_outlined,
+                          ),
+                        ),
+                        SizedBox(
                           width: 5,
                         ),
                         Expanded(
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: const StorageInfoWidget(
-                                    title: 'Số lượng',
-                                    icon:
-                                        Icons.format_list_numbered_outlined))),
+                            child: InfoWidget(
+                          title: "Số lượng",
+                          icon: Icons.format_list_numbered_outlined,
+                        )),
                       ],
                     ),
                   ),
@@ -116,17 +94,22 @@ class StorageBody extends GetView<ProductController> {
                 final filteredProductList = controller.filteredProductList;
                 return Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: (filteredProductList.isEmpty)
-                        ? const EmptyProductWidget()
-                        : ListView.builder(
+                    child: EmptyWidget(
+                        condition: filteredProductList.isNotEmpty,
+                        title: "Không tìm được sản phẩm",
+                        logo: const Icon(
+                          Icons.add_box_outlined,
+                          size: 100,
+                        ),
+                        child: ListView.builder(
                             itemCount: filteredProductList.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return ProductCard(
+                              return _ProductCard(
                                 index: index,
-                                productController: controller,
+                                storageController: controller,
                                 filteredProductList: filteredProductList,
                               );
-                            }));
+                            })));
               }),
             ),
           ],
@@ -147,9 +130,9 @@ class StorageBody extends GetView<ProductController> {
               child: GridView.count(
                 crossAxisCount: 4, // Số lượng cột trong lưới
                 mainAxisSpacing:
-                    15, // Khoảng cách giữa các phần tử theo trục chính (vertical)
+                    16, // Khoảng cách giữa các phần tử theo trục chính (vertical)
                 crossAxisSpacing:
-                    15, // Khoảng cách giữa các phần tử theo trục chéo (horizontal)
+                    16, // Khoảng cách giữa các phần tử theo trục chéo (horizontal)
                 childAspectRatio: 1, // Tỷ lệ khung hình của mỗi phần tử
                 children: [
                   GridNavItem(icon: Icons.event, text: 'Sổ kho', onTap: () {}),
@@ -169,28 +152,27 @@ class StorageBody extends GetView<ProductController> {
   }
 }
 
-class ProductCard extends StatelessWidget {
+class _ProductCard extends StatelessWidget {
   final int index;
-  final ProductController productController;
+  final StorageController storageController;
   final RxList<Product> filteredProductList;
-  const ProductCard(
-      {super.key,
-      required this.index,
-      required this.productController,
+  const _ProductCard(
+      {required this.index,
+      required this.storageController,
       required this.filteredProductList});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      //color: bg2Color,
       child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         leading: const Icon(Icons.medication),
         title: Text(
-          filteredProductList[index].name ?? "",
+          filteredProductList[index].name!,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,8 +186,8 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   "${filteredProductList[index].salePrice} đ",
-                  style: const TextStyle(
-                    color: secondaryColor,
+                  style: TextStyle(
+                    color: Get.theme.colorScheme.onPrimary,
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
                   ),
@@ -222,13 +204,13 @@ class ProductCard extends StatelessWidget {
             Text("Kho: ${filteredProductList[index].numInStorage ?? 0} "),
             (filteredProductList[index].numInStorage == null ||
                     filteredProductList[index].salePrice == null)
-                ? const Text(
+                ? Text(
                     "0 đ",
-                    style: TextStyle(color: secondaryColor),
+                    style: TextStyle(color: Get.theme.colorScheme.onPrimary),
                   )
                 : Text(
                     "${filteredProductList[index].numInStorage! * filteredProductList[index].salePrice!} đ",
-                    style: const TextStyle(color: secondaryColor),
+                    style: TextStyle(color: Get.theme.colorScheme.onPrimary),
                   ),
           ],
         ),

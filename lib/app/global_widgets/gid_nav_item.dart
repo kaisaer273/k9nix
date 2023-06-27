@@ -1,5 +1,4 @@
-import 'package:flutter/widgets.dart';
-import 'package:k9nix/app/core/theme/color_theme.dart';
+import 'package:flutter/material.dart';
 
 class GridNavItem extends StatelessWidget {
   final IconData icon;
@@ -13,9 +12,9 @@ class GridNavItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: bg2Color,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          color: Theme.of(context).colorScheme.secondary,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -23,7 +22,7 @@ class GridNavItem extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: primaryColor,
+              color: Theme.of(context).colorScheme.onSecondary,
               size: 30,
             ),
             const SizedBox(
@@ -33,12 +32,7 @@ class GridNavItem extends StatelessWidget {
               child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontFamily: 'sans_semibold',
-                  fontWeight: FontWeight.normal,
-                  fontSize: 15,
-                  color: primaryColor,
-                ),
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
           ],

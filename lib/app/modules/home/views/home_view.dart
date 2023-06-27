@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:k9nix/app/core/theme/app_color.dart';
 import 'package:k9nix/app/core/values/strings.dart';
-import 'package:k9nix/app/modules/home/views/widgets/gid_nav_item.dart';
-import 'package:k9nix/app/modules/home/views/widgets/info_widget.dart';
+import 'package:k9nix/app/global_widgets/gid_nav_item.dart';
+import 'package:k9nix/app/global_widgets/info_widget.dart';
 
-import '../../../core/theme/color_theme.dart';
+import '../../../core/theme/theme_services.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -15,46 +16,34 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 70,
-        leading: Container(
-          padding: const EdgeInsets.only(
-            left: 16,
-          ),
-          child: const CircleAvatar(
-              radius: 100,
-              backgroundColor: bgColor,
-              child: Icon(
-                Icons.person_outline,
-                size: 30,
-                color: secondaryColor,
-              )),
-        ),
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               appname,
-              style: TextStyle(
-                  color: secondaryColor,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .displayMedium!
+                  .copyWith(color: LightThemeColor.accent),
             ),
             Text(
               "Thông tin >",
-              style: TextStyle(
-                color: primaryGrey,
-                fontSize: 16,
-              ),
+              style: Theme.of(context).textTheme.headlineSmall,
             )
           ],
         ),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Icon(
-              Icons.qr_code_scanner_outlined,
-              color: secondaryColor,
-              size: 30,
+            padding: const EdgeInsets.only(right: 16),
+            child: GestureDetector(
+              onTap: () {
+                ThemeServices().switchTheme();
+              },
+              child: const Icon(
+                Icons.qr_code_scanner_outlined,
+                color: LightThemeColor.accent,
+                size: 30,
+              ),
             ),
           )
         ],
@@ -63,7 +52,7 @@ class HomeView extends GetView<HomeController> {
       body: SafeArea(
           child: Column(
         children: [
-          _infoBar(),
+          _infoBar(context),
           _gridNavigationBar(),
         ],
       )),
@@ -84,9 +73,9 @@ class HomeView extends GetView<HomeController> {
               child: GridView.count(
                 crossAxisCount: 4, // Số lượng cột trong lưới
                 mainAxisSpacing:
-                    15, // Khoảng cách giữa các phần tử theo trục chính (vertical)
+                    16, // Khoảng cách giữa các phần tử theo trục chính (vertical)
                 crossAxisSpacing:
-                    15, // Khoảng cách giữa các phần tử theo trục chéo (horizontal)
+                    16, // Khoảng cách giữa các phần tử theo trục chéo (horizontal)
                 childAspectRatio: 1, // Tỷ lệ khung hình của mỗi phần tử
                 children: [
                   GridNavItem(
@@ -135,7 +124,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Container _infoBar() {
+  Container _infoBar(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(
         top: 80,
@@ -145,39 +134,27 @@ class HomeView extends GetView<HomeController> {
       height: 220,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: bg2Color,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         children: [
           Container(
             padding: const EdgeInsets.all(20),
-            child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    today,
-                    style: TextStyle(
-                      fontFamily: 'sans_semibold',
-                      fontSize: 18,
-                      color: primary2Color,
-                    ),
-                  ),
-                  Text(
-                    viewProfitLoss,
-                    style: TextStyle(
-                      fontFamily: 'sans_regular',
-                      fontSize: 20,
-                      color: secondaryColor,
-                    ),
-                  )
-                ]),
+            alignment: Alignment.centerLeft,
+            child: Text(today, style: Theme.of(context).textTheme.displaySmall),
+          ),
+          Container(
+            height: 2,
+            width: double.infinity,
+            color: Theme.of(context).colorScheme.tertiary,
           ),
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                color: primary2Color,
-                borderRadius: BorderRadius.only(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(15),
                     bottomRight: Radius.circular(15)),
               ),
@@ -193,8 +170,8 @@ class HomeView extends GetView<HomeController> {
                     decoration: const BoxDecoration(
                         border: Border(
                             right: BorderSide(
-                      width: 1,
-                      color: bg2Color,
+                      width: 2,
+                      color: Colors.white60,
                     )))),
                 const Expanded(
                     child: InfoWidget(
@@ -206,8 +183,8 @@ class HomeView extends GetView<HomeController> {
                     decoration: const BoxDecoration(
                         border: Border(
                             right: BorderSide(
-                      width: 1,
-                      color: bg2Color,
+                      width: 2,
+                      color: Colors.white60,
                     )))),
                 const Expanded(
                   child: InfoWidget(

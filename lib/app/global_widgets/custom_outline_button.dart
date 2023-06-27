@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k9nix/app/core/theme/color_theme.dart';
+import 'package:get/get.dart';
 
 class CustomOutlineButton extends StatelessWidget {
   final String text;
@@ -20,8 +20,8 @@ class CustomOutlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color buttonTextColor = textColor ?? Colors.black;
-    Color buttonBorderColor = borderColor ?? primaryColor;
-    Color background = backgroundColor ?? bgColor;
+    Color buttonBorderColor = borderColor ?? Get.theme.colorScheme.primary;
+    Color background = backgroundColor ?? Get.theme.colorScheme.background;
 
     return OutlinedButton(
       onPressed: () => onPressed(),
