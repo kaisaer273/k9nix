@@ -6,11 +6,10 @@ import 'package:k9nix/app/global_widgets/gid_nav_item.dart';
 import 'package:k9nix/app/global_widgets/info_widget.dart';
 
 import 'package:k9nix/app/modules/storage/controllers/storage_controller.dart';
-
-import 'product_list_view.dart';
+import 'package:k9nix/app/modules/storage/views/widgets/product_list_view_s.dart';
 
 class StorageBody extends GetView<StorageController> {
-  const StorageBody({super.key});
+  const StorageBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class StorageBody extends GetView<StorageController> {
           )),
       Expanded(
         child: Container(
-          padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+          padding: const EdgeInsets.only(left: 16, right: 16),
           child: Column(
             children: [
               Container(
@@ -58,34 +57,31 @@ class StorageBody extends GetView<StorageController> {
                     const SizedBox(
                       height: 16,
                     ),
-                    SizedBox(
-                      height: 70,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: const InfoWidget(
-                                title: "Giá trị tồn",
-                                icon: Icons.monetization_on_outlined,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                              child: Container(
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8)),
                             child: const InfoWidget(
-                              title: "Số lượng",
-                              icon: Icons.format_list_numbered_outlined,
+                              title: "Giá trị tồn",
+                              icon: Icons.monetization_on_outlined,
                             ),
-                          )),
-                        ],
-                      ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                            child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const InfoWidget(
+                            title: "Số lượng",
+                            icon: Icons.format_list_numbered_outlined,
+                          ),
+                        )),
+                      ],
                     ),
                     const SizedBox(
                       height: 16,
@@ -110,7 +106,7 @@ class StorageBody extends GetView<StorageController> {
                     ),
                     child: GetBuilder(
                       builder: (StorageController controller) {
-                        return ProductListView(
+                        return ProductListViewS(
                           products: controller.filteredProductList,
                         );
                       },
@@ -126,22 +122,14 @@ class StorageBody extends GetView<StorageController> {
   }
 
   _gridNavigationBar() {
-    return SizedBox(
-      height: 100,
-      child: Expanded(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GridNavItem(icon: Icons.event, text: 'Sổ kho', onTap: () {}),
-            GridNavItem(
-                icon: Icons.download_for_offline_outlined,
-                text: 'Sổ nhập hàng',
-                onTap: () {}),
-            GridNavItem(
-                icon: Icons.print_outlined, text: 'In tem', onTap: () {}),
-          ],
-        ),
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        GridNavItem(icon: Icons.event, text: 'Sổ kho', onTap: () {}),
+        GridNavItem(icon: Icons.file_download, text: 'Nhập hàng', onTap: () {}),
+        GridNavItem(icon: Icons.file_upload, text: 'Xuất hàng', onTap: () {}),
+        GridNavItem(icon: Icons.print_outlined, text: 'In tem', onTap: () {}),
+      ],
     );
   }
 }

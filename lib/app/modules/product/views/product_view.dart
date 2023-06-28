@@ -57,11 +57,13 @@ class ProductView extends GetView<ProductController> {
                     ),
             )),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed("/product-order");
+          },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: const Icon(
-              Icons.qr_code_scanner_outlined,
+              Icons.shopping_cart_outlined,
               size: 30,
               color: LightThemeColor.accent,
             ),

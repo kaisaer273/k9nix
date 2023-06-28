@@ -93,7 +93,9 @@ class HomeView extends GetView<HomeController> {
                   GridNavItem(
                       icon: Icons.post_add_rounded,
                       text: neworder,
-                      onTap: () {}),
+                      onTap: () {
+                        Get.toNamed('/product-order');
+                      }),
                   GridNavItem(
                     icon: Icons.article_outlined,
                     text: order,

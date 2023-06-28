@@ -5,10 +5,10 @@ import 'package:k9nix/app/data/models/product.dart';
 
 import '../../controllers/storage_controller.dart';
 
-class ProductListView extends GetView<StorageController> {
+class ProductListViewS extends GetView<StorageController> {
   final List<Product> products;
 
-  const ProductListView({
+  const ProductListViewS({
     Key? key,
     required this.products,
   }) : super(key: key);
