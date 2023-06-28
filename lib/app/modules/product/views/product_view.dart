@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:k9nix/app/core/theme/app_color.dart';
 
 import 'package:k9nix/app/core/values/strings.dart';
-import 'package:k9nix/app/modules/product/views/widgets/product_list_widget.dart';
+import 'package:k9nix/app/modules/product/views/widgets/product_body.dart';
 
 import '../controllers/product_controller.dart';
 
@@ -13,13 +13,11 @@ class ProductView extends GetView<ProductController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      resizeToAvoidBottomInset: false,
       appBar: _appbar(context),
       body: SafeArea(
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: const ProductListWidget(),
-        ),
+        child: ProductBody(),
       ),
     );
   }

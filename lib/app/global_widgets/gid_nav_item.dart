@@ -12,6 +12,8 @@ class GridNavItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height: 100,
+        width: 100,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(15)),
           color: Theme.of(context).colorScheme.secondary,

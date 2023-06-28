@@ -8,15 +8,15 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.green).copyWith(
-      primary: LightThemeColor.primaryDark,
-      secondary: LightThemeColor.primaryLight,
-      tertiary: LightThemeColor.primaryLight,
-      onPrimary: Colors.black87,
-      onSecondary: Colors.black87,
-    ),
-    scaffoldBackgroundColor: LightThemeColor.primaryLight,
+        primary: LightThemeColor.primaryDark,
+        secondary: LightThemeColor.primaryLight,
+        tertiary: LightThemeColor.yellow,
+        onPrimary: Colors.black87,
+        onSecondary: Colors.black87,
+        surface: LightThemeColor.primaryLight),
+    scaffoldBackgroundColor: LightThemeColor.primaryDark,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: Color.fromRGBO(182, 242, 175, 1),
+      backgroundColor: LightThemeColor.yellow,
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
@@ -28,7 +28,7 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
-          const Color.fromRGBO(182, 242, 175, 1),
+          LightThemeColor.yellow,
         ),
       ),
     ),
@@ -57,13 +57,6 @@ class AppTheme {
     ),
     iconTheme: const IconThemeData(color: Colors.black45),
     bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
-    cardTheme: CardTheme(
-      color: LightThemeColor.primaryLight, // Màu nền của Card
-      elevation: 4, // Độ nổi của Card
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8), // Độ cong góc của Card
-      ),
-    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -71,9 +64,10 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.green).copyWith(
       primary: DarkThemeColor.primaryDark,
       secondary: DarkThemeColor.primaryLight,
-      tertiary: Colors.amber[900],
+      tertiary: LightThemeColor.accent,
       onSecondary: Colors.white,
       onPrimary: Colors.white,
+      surface: DarkThemeColor.primaryLight,
     ),
     canvasColor: DarkThemeColor.primaryDark,
     scaffoldBackgroundColor: DarkThemeColor.primaryDark,
@@ -121,13 +115,6 @@ class AppTheme {
     iconTheme: const IconThemeData(color: Colors.white),
     bottomAppBarTheme: const BottomAppBarTheme(
       color: DarkThemeColor.primaryLight,
-    ),
-    cardTheme: CardTheme(
-      color: DarkThemeColor.primaryLight, // Màu nền của Card
-      elevation: 4, // Độ nổi của Card
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8), // Độ cong góc của Card
-      ),
     ),
   );
 }

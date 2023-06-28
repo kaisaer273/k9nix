@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/order_controller.dart';
+import '../controllers/product_order_controller.dart';
 
-class OrderView extends GetView<OrderController> {
+class OrderView extends GetView<ProductOrderController> {
   const OrderView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

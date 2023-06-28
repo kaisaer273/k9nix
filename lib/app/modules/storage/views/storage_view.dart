@@ -5,7 +5,7 @@ import 'package:k9nix/app/core/theme/app_color.dart';
 
 import 'package:k9nix/app/core/values/strings.dart';
 import 'package:k9nix/app/modules/product/controllers/product_controller.dart';
-import 'package:k9nix/app/modules/product/views/widgets/product_list_widget.dart';
+
 import 'package:k9nix/app/modules/storage/views/widgets/storage_body.dart';
 
 import '../controllers/storage_controller.dart';
@@ -17,6 +17,8 @@ class StorageView extends GetView<StorageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      resizeToAvoidBottomInset: false,
       appBar: _appbar(context),
       body: const SafeArea(
         child: StorageBody(),

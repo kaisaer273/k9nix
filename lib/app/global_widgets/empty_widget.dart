@@ -18,18 +18,17 @@ class EmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return condition
         ? child
-        : Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                logo,
-                const SizedBox(height: 10),
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.displayMedium,
-                )
-              ],
-            ),
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              logo,
+              const SizedBox(height: 10),
+              Text(
+                title,
+                style: Theme.of(context).textTheme.displayMedium,
+              )
+            ],
           );
   }
 }

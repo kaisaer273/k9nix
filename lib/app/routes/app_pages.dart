@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/order/bindings/order_binding.dart';
-import '../modules/order/views/order_view.dart';
+import '../modules/product_order/bindings/product_order_binding.dart';
+import '../modules/product_order/views/Product_order_view.dart';
 import '../modules/product/bindings/product_binding.dart';
 import '../modules/product/views/product_view.dart';
 import '../modules/product_add/bindings/product_add_binding.dart';
@@ -44,7 +44,7 @@ class AppPages {
     GetPage(
       name: _Paths.ORDER,
       page: () => const OrderView(),
-      binding: OrderBinding(),
+      binding: ProductOrderBinding(),
     ),
   ];
 }
