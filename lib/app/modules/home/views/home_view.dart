@@ -104,7 +104,9 @@ class HomeView extends GetView<HomeController> {
                   GridNavItem(
                       icon: Icons.people_alt_outlined,
                       text: phonebook,
-                      onTap: () {}),
+                      onTap: () {
+                        Get.toNamed("/customer");
+                      }),
                   GridNavItem(
                       icon: Icons.event_busy_outlined,
                       text: paybook,

@@ -1,23 +1,10 @@
 import 'package:get/get.dart';
+import 'package:k9nix/app/data/models/customer.dart';
 
 class CustomerController extends GetxController {
-  //TODO: Implement CustomerController
+  var customers = <Customer>[].obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void addCustomer(Customer customer) {
+    customers.add(customer);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

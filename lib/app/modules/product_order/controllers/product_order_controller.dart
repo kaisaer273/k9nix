@@ -4,16 +4,6 @@ import 'package:k9nix/app/data/models/product.dart';
 class ProductOrderController extends GetxController {
   final RxMap<dynamic, dynamic> _cartProduct = <dynamic, dynamic>{}.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void addToCart(Product product) {
     if (!_cartProduct.containsKey(product)) {
       _cartProduct[product] = 1;

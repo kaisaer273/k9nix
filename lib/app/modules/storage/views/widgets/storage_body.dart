@@ -122,14 +122,26 @@ class StorageBody extends GetView<StorageController> {
   }
 
   _gridNavigationBar() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        GridNavItem(icon: Icons.event, text: 'Sổ kho', onTap: () {}),
-        GridNavItem(icon: Icons.file_download, text: 'Nhập hàng', onTap: () {}),
-        GridNavItem(icon: Icons.file_upload, text: 'Xuất hàng', onTap: () {}),
-        GridNavItem(icon: Icons.print_outlined, text: 'In tem', onTap: () {}),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          GridNavItem(icon: Icons.event, text: 'Sổ kho', onTap: () {}),
+          const SizedBox(
+            width: 16,
+          ),
+          GridNavItem(
+              icon: Icons.file_download, text: 'Nhập hàng', onTap: () {}),
+          const SizedBox(
+            width: 16,
+          ),
+          GridNavItem(icon: Icons.file_upload, text: 'Xuất hàng', onTap: () {}),
+          const SizedBox(
+            width: 16,
+          ),
+          GridNavItem(icon: Icons.print_outlined, text: 'In tem', onTap: () {}),
+        ],
+      ),
     );
   }
 }

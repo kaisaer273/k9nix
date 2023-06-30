@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:k9nix/app/core/theme/app_color.dart';
 import 'package:k9nix/app/core/values/strings.dart';
-import 'package:k9nix/app/global_widgets/empty_widget.dart';
-import 'package:k9nix/app/modules/product_order/views/widgets/product_list_view_c.dart';
 import 'package:k9nix/app/modules/product_order/views/widgets/product_order_body.dart';
 
 import '../controllers/product_order_controller.dart';

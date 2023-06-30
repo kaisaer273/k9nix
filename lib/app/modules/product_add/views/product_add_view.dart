@@ -137,8 +137,8 @@ class ProductAddView extends GetView<ProductAddController> {
           const SizedBox(
             height: 20,
           ),
-          const Row(
-            children: [
+          Row(
+            children: const [
               Expanded(
                   child:
                       CustomTextField(label: 'Mã SKU', hintText: 'SKU code')),
@@ -158,24 +158,24 @@ class ProductAddView extends GetView<ProductAddController> {
     return Container(
       padding: const EdgeInsets.all(16),
       color: Get.theme.colorScheme.surfaceVariant,
-      child: const Column(
+      child: Column(
         children: [
-          CustomTextField(
+          const CustomTextField(
             label: 'Tên sản phẩm *',
             hintText: 'Nhập tên sản phẩm',
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          CustomTextField(
+          const CustomTextField(
             label: 'Thành phần',
             hintText: 'Nhập tên thành phần',
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
-            children: [
+            children: const [
               Expanded(
                 child: CustomTextField(
                   label: 'Giá nhập',
