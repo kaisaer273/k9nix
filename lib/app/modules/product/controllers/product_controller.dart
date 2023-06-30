@@ -23,7 +23,8 @@ class ProductController extends GetxController {
     // Lọc danh sách dựa trên query
     filteredProductList.value = _data.where((item) {
       return item.name!.toLowerCase().contains(query.toLowerCase()) ||
-          item.ingredient!.toLowerCase().contains(query.toLowerCase());
+          item.ingredient!.toLowerCase().contains(query.toLowerCase()) ||
+          item.skuCode!.toLowerCase().contains(query.toLowerCase());
     }).toList();
   }
 }

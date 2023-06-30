@@ -265,7 +265,7 @@ class StorageController extends GetxController {
     ),
   ];
 
-  RxList<Product> filteredProductList = RxList([]); // Danh sách đã lọc
+  RxList<Product> filteredProductList = RxList([]);
   var isShowSearchBar = false.obs;
 
   get productList => _data;
@@ -273,7 +273,7 @@ class StorageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    initFlilterList(); // Bắt đầu bằng việc hiển thị toàn bộ danh sách
+    initFlilterList();
   }
 
   void initFlilterList() {
@@ -281,10 +281,10 @@ class StorageController extends GetxController {
   }
 
   void filterproduct(String query) {
-    // Lọc danh sách dựa trên query
     filteredProductList.value = _data.where((item) {
       return item.name!.toLowerCase().contains(query.toLowerCase()) ||
-          item.ingredient!.toLowerCase().contains(query.toLowerCase());
+          item.ingredient!.toLowerCase().contains(query.toLowerCase()) ||
+          item.skuCode!.toLowerCase().contains(query.toLowerCase());
     }).toList();
   }
 }

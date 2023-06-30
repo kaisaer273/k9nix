@@ -12,17 +12,17 @@ class Product {
   int? numSold;
 
   Product(
-      {this.name,
-      this.ingredient,
-      this.unit,
+      {required this.name,
+      required this.ingredient,
+      required this.unit,
       this.imgUrl,
-      this.skuCode,
+      required this.skuCode,
       this.barCode,
-      this.purchasePrice,
-      this.salePrice,
+      required this.purchasePrice,
+      required this.salePrice,
       this.isAvaiable,
-      this.numInStorage,
-      this.numSold});
+      this.numInStorage = 0,
+      this.numSold = 0});
 
   Product.fromJson(Map<String, dynamic> json) {
     name = json['name'];

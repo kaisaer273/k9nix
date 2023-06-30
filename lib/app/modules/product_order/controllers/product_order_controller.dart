@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
 import 'package:k9nix/app/data/models/product.dart';
-import 'package:k9nix/app/data/models/product_order.dart';
 
 class ProductOrderController extends GetxController {
   final RxMap<dynamic, dynamic> _cartProduct = <dynamic, dynamic>{}.obs;
-  final RxList<ProductOrder> _listOrdered = <ProductOrder>[].obs;
 
   @override
   void onInit() {
@@ -45,7 +43,6 @@ class ProductOrderController extends GetxController {
     return price;
   }
 
-  get listOrdered => _listOrdered;
   get cartProduct => _cartProduct;
   get totalPrice => (_cartProduct.isNotEmpty)
       ? _cartProduct.entries
