@@ -22,8 +22,8 @@ class ProductOrderBody extends GetView<ProductOrderController> {
           condition: controller.cartProduct.isNotEmpty,
           child: SingleChildScrollView(
               child: GetBuilder(
-            builder: (ProductOrderController controller) => Column(
-              children: const [
+            builder: (ProductOrderController controller) => const Column(
+              children: [
                 ProductListViewC(),
                 TextField(),
               ],
