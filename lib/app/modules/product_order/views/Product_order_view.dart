@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:k9nix/app/core/theme/app_color.dart';
 import 'package:k9nix/app/core/values/strings.dart';
